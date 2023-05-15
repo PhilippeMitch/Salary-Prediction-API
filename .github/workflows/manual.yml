@@ -1,4 +1,4 @@
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+# For more information see: https://github.com/marketplace/actions/setup-miniconda
 
 name: Salary Prediction API
 
@@ -22,7 +22,7 @@ jobs:
           python-version: 3.10.11
           channels: conda-forge,defaults
           channel-priority: true
-          activate-environment: lm_moel_to_cloud_env
+          activate-environment: ml_model_to_cloud_env
           environment-file: starter/environment.yml
       - name: Install other dependencies
         run: |

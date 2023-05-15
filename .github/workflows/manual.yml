@@ -39,4 +39,5 @@ jobs:
       - name: Run the test with pytest
         shell: bash
         run: |
+          conda activate ml_model_to_cloud_env
           pytest -vv

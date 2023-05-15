@@ -39,6 +39,25 @@ class InputData(BaseModel):
     hours_per_week: int
     native_country: str
 
+    class Config:
+        schema_extra = {
+                        "example": {
+                                    'age':50,
+                                    'workclass':"Private", 
+                                    'fnlgt':234721,
+                                    'education':"Doctorate",
+                                    'marital_status':"Separated",
+                                    'occupation':"Exec-managerial",
+                                    'relationship':"Not-in-family",
+                                    'race':"Black",
+                                    'sex':"Female",
+                                    'capital_gain':0,
+                                    'capital_loss':0,
+                                    'hours_per_week':50,
+                                    'native_country':"United-States"
+                                    }
+                        }
+
 
 # Load the models when the application start
 @app.on_event("startup")

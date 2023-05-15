@@ -63,6 +63,8 @@ def test_predict_1():
     try:
         # test predicted response
         assert response.json()["prediction"][0] == '>50K'
+        assert response.json()["age"] == 50
+        assert response.json()["fnlgt"] == 234721
         #assert response.json()["score"][0] == 0.69
     except AssertionError as err:
         logging.error(

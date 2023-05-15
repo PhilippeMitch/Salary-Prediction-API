@@ -37,4 +37,5 @@ jobs:
         run: uvicorn main:app &
       - name: Test with pytest
         run: |
+          conda activate ml_model_to_cloud_env
           pytest -vv

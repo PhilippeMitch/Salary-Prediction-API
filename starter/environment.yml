@@ -18,4 +18,5 @@ dependencies:
   - shap=0.41.0
   - fastapi=0.95.1
   - httpx=0.24.0
+  - flake8=6.0.0
   

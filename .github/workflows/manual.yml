@@ -1,46 +1,43 @@
-# Workflow to ensure whenever a Github PR is submitted, 
-# a JIRA ticket gets created automatically. 
-name: Manual Workflow
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-# Controls when the action will run. 
+name: Salary Prediction API
+
 on:
-  # Triggers the workflow on pull request events but only for the master branch
-  pull_request_target:
-    types: [opened, reopened]
+  push:
+    branches: [ "main" ]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+permissions:
+  contents: read
 
 jobs:
-  test-transition-issue:
-    name: Convert Github Issue to Jira Issue
+  build:
+
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10.9", "3.10.10", "3.10.11"]
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@master
-
-    - name: Login
-      uses: atlassian/gajira-login@master
-      env:
-        JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
-        JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
-        JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-        
-    - name: Create NEW JIRA ticket
-      id: create
-      uses: atlassian/gajira-create@master
+    - uses: actions/checkout@v3
+    - name: Set up miniconda
+    - uses: conda-incubator/setup-miniconda@v2
       with:
-        project: CONUPDATE
-        issuetype: Task
-        summary: |
-          Github PR | Repo: ${{ github.repository }}  | PR# ${{github.event.number}}
-        description: |
-           Repo link: https://github.com/${{ github.repository }}   
-           PR no. ${{ github.event.pull_request.number }} 
-           PR title: ${{ github.event.pull_request.title }}  
-           PR description: ${{ github.event.pull_request.description }}  
-           In addition, please resolve other issues, if any. 
-        fields: '{"components": [{"name":"nd0821 - ML DevOpsEngineer ND"}], "customfield_16449":"https://classroom.udacity.com/", "customfield_16450":"Resolve the PR", "labels": ["github"], "priority":{"id": "4"}}'
-
-    - name: Log created issue
-      run: echo "Issue ${{ steps.create.outputs.issue }} was created"
+        python-version: 3.10.11
+        channels: conda-forge,defaults
+        channel-priority: true
+        activate-environment: lm_moel_to_cloud_env
+        environment-file: starter/environment.yml
+    - name: Install other dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 #pytest pandas scikit-learn fastapi httpx
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Run server in background
+      run: uvicorn main:app &
+    - name: Test with pytest
+      run: |
+        pytest -vv

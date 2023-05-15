@@ -22,7 +22,7 @@ jobs:
           python-version: 3.10.11
           channels: conda-forge,defaults
           channel-priority: true
-          auto-activate-base: false
+          auto-activate-base: true
           activate-environment: ml_model_to_cloud_env
           environment-file: starter/environment.yml
       - name: Install flake dependency
@@ -38,7 +38,6 @@ jobs:
         shell: bash 
         run: |
           conda info --envs
-          conda init bash
           conda activate ml_model_to_cloud_env
           conda list -e
           uvicorn main:app &

@@ -40,4 +40,4 @@ jobs:
         run: |
           conda activate ml_model_to_cloud_env
           pytest -vv
-        working-directory: scripts
+        working-directory: ./starter

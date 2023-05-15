@@ -24,10 +24,12 @@ jobs:
           channel-priority: true
           activate-environment: ml_model_to_cloud_env
           environment-file: starter/environment.yml
-      - name: Lint with flake8
-        shell: bash
+      - name: Install flake dependency
         run: |
-          conda activate ml_model_to_cloud_env
+          python -m pip install --upgrade pip
+          pip install flake8 pytest
+      - name: Lint with flake8
+        run: |
           # stop the build if there are Python syntax errors or undefined names
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics

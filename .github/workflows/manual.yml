@@ -27,7 +27,7 @@ jobs:
       run: |
         conda env create -f starter/environment.yml
         source activate ml_model_to_cloud_env
-        conda deactivate
+        conda activate ml_model_to_cloud_env
     - name: Lint with flake8
       run: |
         conda install flake8=6.0.0
@@ -40,4 +40,5 @@ jobs:
     - name: Test with pytest
       run: |
         conda env list
+        conda list
         pytest -vv

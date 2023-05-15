@@ -1,0 +1,31 @@
+root - INFO - Split the data into train and test
+root - INFO - Start processing the train data
+root - INFO - Processed train data: (26029, 107), (26029,)
+root - INFO - Start processing the test data
+root - INFO - Processed test data: (6508, 107), (6508,)
+root - INFO - Start the hyperparameter tunning
+root - INFO - Hyperparameter tunning done: {'eta': 0.4, 'gamma': 0.13906642795131213, 'max_depth': 5.273849418464369}
+root - INFO - Start training the model with the params: {'objective': 'binary:logistic', 'eta': 0.4, 'max_depth': 5, 'gamma': 0, 'eval_metric': 'aucpr', 'verbosity': 0}
+root - INFO - Start the evaluation of the model
+root - INFO - Classification report:
+              precision    recall  f1-score   support
+
+           0       0.89      0.92      0.91      4948
+           1       0.72      0.64      0.68      1560
+
+    accuracy                           0.85      6508
+   macro avg       0.80      0.78      0.79      6508
+weighted avg       0.85      0.85      0.85      6508
+
+root - INFO - Test evaluation result:         
+ Recall: 0.64 
+ Precision: 0.72         
+ Fscore: 0.68 
+ Accuracy: 0.85 
+root - INFO - Save the Confusion matrix:
+[[4558  390]
+ [ 563  997]]
+root - INFO - Saved models: ['.gitignore', 'xgb_model.pkl', 'encoder.pkl', 'labelizer.pkl']
+root - INFO - Predicted data save: ['.gitignore', 'clean_census.csv', 'slice_output.txt', 'census.csv', 'predicted_data.csv']
+root - INFO - Starting the slice evaluation
+root - INFO - Predicted slice data save: ['.gitignore', 'clean_census.csv', 'slice_output.txt', 'census.csv', 'predicted_data.csv']

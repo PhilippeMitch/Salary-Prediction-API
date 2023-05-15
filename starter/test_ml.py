@@ -13,6 +13,7 @@ from starter.ml.model import inference
 @pytest.fixture(scope="module")
 def data():
     # Load in the data.
+    print(os.getcwd())
     data_path = "data/clean_census.csv"
     return pd.read_csv(data_path)
 

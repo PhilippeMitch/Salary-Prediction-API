@@ -38,7 +38,7 @@ jobs:
         shell: bash 
         run: |
           conda init bash
-          conda activate ml_model_to_cloud_env
+          source activate ml_model_to_cloud_env
           conda list -e
           uvicorn main:app &
       - name: Run the test with pytest

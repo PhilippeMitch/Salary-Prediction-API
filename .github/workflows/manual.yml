@@ -25,6 +25,7 @@ jobs:
           activate-environment: ml_model_to_cloud_env
           environment-file: starter/environment.yml
       - name: Lint with flake8
+        shell: bash
         run: |
           conda activate ml_model_to_cloud_env
           # stop the build if there are Python syntax errors or undefined names

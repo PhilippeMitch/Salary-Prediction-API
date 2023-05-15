@@ -37,7 +37,6 @@ jobs:
       - name: Run server in background
         shell: bash 
         run: |
-          conda init bash
           source activate ml_model_to_cloud_env
           conda list -e
           uvicorn main:app &

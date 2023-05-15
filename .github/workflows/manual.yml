@@ -35,8 +35,7 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Run server in background
         run: uvicorn main:app &
-      - name: Test with pytest
-        shell: bash
+      - name: Run the test with pytest
         run: |
           conda activate ml_model_to_cloud_env
           pytest -vv

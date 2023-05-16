@@ -7,7 +7,7 @@ name: Build and deploy Python app to Azure Web App - salary-predict-api
 on:
   push:
     branches:
-      - main
+      - master
   workflow_dispatch:
 
 jobs:
@@ -83,6 +83,3 @@ jobs:
           app-name: 'salary-predict-api'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BFDE999BB1A7421FB15EA5464ED27924 }}
-      
-      - name: Run the app 
-        run: uvicorn main:app --host=0.0.0.0 --port=${PORT:-5000}

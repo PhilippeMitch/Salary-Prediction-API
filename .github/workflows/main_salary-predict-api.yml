@@ -22,21 +22,32 @@ jobs:
         with:
           python-version: '3.10'
         
-      - name: Create and start virtual environment
+#       - name: Create and start virtual environment
+#         run: |
+#           python -m venv venv
+#           source venv/bin/activate
+          
+      - name: Add conda to system path
         run: |
-          python -m venv venv
-          source venv/bin/activate
+          # $CONDA is an environment variable pointing to the root of the miniconda directory
+          echo $CONDA/bin >> $GITHUB_PATH
       
+#       - name: Install dependencies
+#         run: pip install -r requirements.txt
+
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          conda env update --file environment.yml --name base
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       - name: Lint with flake8
         run: |
+          conda install flake8=6.0.0
           # stop the build if there are Python syntax errors or undefined names
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+          
       - name: Run server in background
         run: uvicorn main:app &
       - name: Test with pytest
@@ -49,7 +60,7 @@ jobs:
           name: python-app
           path: |
             . 
-            !venv/
+            !base/
 
   deploy:
     runs-on: ubuntu-latest

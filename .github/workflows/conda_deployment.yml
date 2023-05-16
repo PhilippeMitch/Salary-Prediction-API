@@ -4,7 +4,7 @@ name: Salary Prediction API
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 permissions:
   contents: read

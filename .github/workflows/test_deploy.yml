@@ -4,7 +4,7 @@ on:
 
 jobs:
   name: Ex3 Linux
-    runs-on: "ubuntu-latest"
+    runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash -el {0}

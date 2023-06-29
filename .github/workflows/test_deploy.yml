@@ -1,21 +1,21 @@
+  name: Ex3 Linux
+
 on:
   push:
     branches: [ "main" ]
 
 jobs:
-  name: Ex3 Linux
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash -el {0}
-    steps:
-      - uses: actions/checkout@v2
-      - uses: conda-incubator/setup-miniconda@v2
-        with:
-          activate-environment: anaconda-client-env
-          environment-file: test_deploy.yml
-          python-version: 3.5
-          auto-activate-base: false
-      - run: |
-          conda info
-          conda list
+
+  runs-on: ubuntu-latest
+
+  steps:
+    - uses: actions/checkout@v2
+    - uses: conda-incubator/setup-miniconda@v2
+      with:
+        activate-environment: anaconda-client-env
+        environment-file: test_deploy.yml
+        python-version: 3.5
+        auto-activate-base: false
+    - run: |
+        conda info
+        conda list

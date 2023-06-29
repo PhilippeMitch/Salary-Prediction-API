@@ -1,4 +1,4 @@
-  name: Ex3 Linux
+name: Ex3 Linux
 
 on:
   push:

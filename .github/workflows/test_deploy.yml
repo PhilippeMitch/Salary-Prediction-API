@@ -22,6 +22,7 @@ jobs:
           environment-file: environment.yml
       - name: Lint with flake8
         run: |
+          conda activate ml_model_to_cloud_env
           conda install flake8=6.0.0
           # stop the build if there are Python syntax errors or undefined names
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics

@@ -1,0 +1,21 @@
+name: base
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - scikit-learn=1.2.2
+  - pandas-profiling=3.6.3
+  - ipywidgets=8.0.6 
+  - pyarrow=10.0.1
+  - seaborn=0.12.2
+  - pytest=7.3.1
+  - jupyterlab=3.6.3
+  - fastapi=0.95.1
+  - uvicorn=0.22.0
+  - git=2.40.1
+  - xgboost=1.7.4
+  - bayesian-optimization=1.4.3
+  - shap=0.41.0
+  - fastapi=0.95.1
+  - httpx=0.24.0
+  - flake8=6.0.0
